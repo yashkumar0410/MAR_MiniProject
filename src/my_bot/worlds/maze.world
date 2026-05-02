@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="maze_world">
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- 🟩 START -->
+    <model name="start_point">
+      <static>true</static>
+      <pose>-1.5 -1.5 0.05 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.3 0.3 0.1</size></box>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 🟥 GOAL -->
+    <model name="goal_point">
+      <static>true</static>
+      <pose>1.5 1.5 0.05 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.3 0.3 0.1</size></box>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================= -->
+    <!-- 🧱 OUTER WALLS -->
+    <!-- ========================= -->
+
+    <!-- top -->
+    <model name="wall_top">
+      <static>true</static>
+      <pose>0 2 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- bottom -->
+    <model name="wall_bottom">
+      <static>true</static>
+      <pose>0 -2 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- left -->
+    <model name="wall_left">
+      <static>true</static>
+      <pose>-2 0 0.5 0 0 1.57</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- right -->
+    <model name="wall_right">
+      <static>true</static>
+      <pose>2 0 0.5 0 0 1.57</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>4 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================= -->
+    <!-- 🧩 INNER WALLS (WITH PATHS) -->
+    <!-- ========================= -->
+
+    <!-- bottom horizontal (gap on right) -->
+    <model name="inner1">
+      <static>true</static>
+      <pose>-0.5 -0.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>2 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>2 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- vertical wall (gap at bottom) -->
+    <model name="inner2">
+      <static>true</static>
+      <pose>0.5 0.5 0.5 0 0 1.57</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>2 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>2 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- small top blocker (forces turn) -->
+    <model name="inner3">
+      <static>true</static>
+      <pose>1.2 -0.2 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>1 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>1 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
